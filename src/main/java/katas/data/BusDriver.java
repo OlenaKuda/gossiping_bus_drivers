@@ -1,15 +1,18 @@
 package katas.data;
 
-import java.util.Collections;
+import katas.gossiping_drivers.Gossip;
+
+import java.util.HashSet;
 import java.util.List;
-import java.util.UUID;
+import java.util.Set;
 
 public class BusDriver {
     private List<Integer> stops;
-    private List<String> gossips;
+    private Set<Gossip> gossips = new HashSet<>();
 
-    public BusDriver() {
-        this.gossips = Collections.singletonList(UUID.randomUUID().toString());
+    public BusDriver(List<Integer> stops) {
+        this.stops = stops;
+        gossips.add(new Gossip());
     }
 
     public List<Integer> getStops() {
@@ -20,12 +23,11 @@ public class BusDriver {
         this.stops = stops;
     }
 
-    public List<String> getGossips() {
+    public Set<Gossip> getGossips() {
         return gossips;
     }
 
-    public void setGossips(List<String> gossips) {
+    public void setGossips(Set<Gossip> gossips) {
         this.gossips = gossips;
     }
-
 }

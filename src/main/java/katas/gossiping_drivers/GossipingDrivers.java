@@ -9,8 +9,8 @@ public class GossipingDrivers {
     private final int MINUTES_PER_DAY = 480;
     private final GossipsSharer gossipsSharer = new GossipsSharer();
 
-    public String countStops() {
-        List<BusDriver> drivers = DriversManager.getDrivers();
+    public String countStops(List<BusDriver> drivers) {
+
         if (drivers.isEmpty()) {
             return "none";
         }
