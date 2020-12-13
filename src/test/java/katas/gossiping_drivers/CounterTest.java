@@ -9,18 +9,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-class CTest {
+class CounterTest {
 
-    Counter counter = new Counter();
     private final int MINUTES_PER_DAY = 30;
+
     private final DriversBuilder driversBuilder = new DriversBuilder();
-    private final GossipShareManger manger = new GossipShareManger();
+    SharedGossipsCalculatorCommand command = new SharedGossipsCalculatorCommand(MINUTES_PER_DAY);
+    private final SharedGossipsCalculatorCommand manger = new SharedGossipsCalculatorCommand(MINUTES_PER_DAY);
 
     @ParameterizedTest
     @MethodSource("parameters")
     void countStops(String expected, String inputFileName) {
-        List<BusDriver> drivers = driversBuilder.getDrivers(inputFileName);
-        String result = counter.count(drivers, MINUTES_PER_DAY, manger);
+        List<BusDriver> drivers = driversBuilder.build(inputFileName);
+        String result = command.execute(drivers);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 

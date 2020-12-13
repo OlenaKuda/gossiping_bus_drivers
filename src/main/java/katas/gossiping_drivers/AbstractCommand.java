@@ -4,6 +4,6 @@ import katas.data.BusDriver;
 
 import java.util.List;
 
-public interface Manager {
-    String manage(List<BusDriver> busDrivers);
+public interface AbstractCommand<TInput, TOutput> {
+    TOutput execute(TInput input);
 }

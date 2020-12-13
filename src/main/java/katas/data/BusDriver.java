@@ -1,26 +1,22 @@
 package katas.data;
 
-import katas.gossiping_drivers.Gossip;
-
 import java.util.HashSet;
-import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 
 public class BusDriver {
-    private List<Integer> stops;
+    private final Queue<Integer> stops;
     private Set<Gossip> gossips = new HashSet<>();
 
-    public BusDriver(List<Integer> stops) {
+    public BusDriver(Queue<Integer> stops) {
         this.stops = stops;
-        gossips.add(new Gossip());
+        gossips.add(new Gossip(this));
     }
 
-    public List<Integer> getStops() {
-        return stops;
-    }
-
-    public void setStops(List<Integer> stops) {
-        this.stops = stops;
+    public int getStop() {
+        int stop = stops.remove();
+        stops.add(stop);
+        return stop;
     }
 
     public Set<Gossip> getGossips() {

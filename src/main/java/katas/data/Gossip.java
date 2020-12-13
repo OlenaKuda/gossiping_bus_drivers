@@ -1,7 +1,6 @@
-package katas.gossiping_drivers;
+package katas.data;
 
 public class Gossip {
-
-    public Gossip() {
+    public Gossip(BusDriver driver) {
     }
 }

@@ -8,15 +8,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class GossipShareManger implements AbstractCommand {
+public class SharedGossipsCalculatorCommand implements AbstractCommand<List<BusDriver>, String> {
     private final int MINUTES_PER_DAY;
 
-    public GossipShareManger(int minutesPerDay) {
+    public SharedGossipsCalculatorCommand(int minutesPerDay) {
         MINUTES_PER_DAY = minutesPerDay;
     }
 
     @Override
     public String execute(List<BusDriver> drivers) {
+        if (drivers.isEmpty()) {
+            return "none";
+        }
         return IntStream.range(1, MINUTES_PER_DAY)
                 .filter(currentMinute -> areAllGossipsSharedAt(drivers))
                 .mapToObj(String::valueOf)
