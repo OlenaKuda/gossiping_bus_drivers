@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO: Rename to Drivers builder/factory
 public class DriversManager {
     private final FileReader fileReader = new FileReader();
 
@@ -17,6 +18,7 @@ public class DriversManager {
                 .collect(Collectors.toList());
     }
 
+    //TODO: Move into Driver
     public int getStopAt(BusDriver driver, int minute) {
         List<Integer> stops = driver.getStops();
         int size = stops.size();

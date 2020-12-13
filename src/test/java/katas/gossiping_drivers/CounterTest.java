@@ -6,22 +6,21 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-class GossipingDriversTest {
+class CTest {
 
-    GossipingDrivers gossipingDrivers = new GossipingDrivers();
-
-    final DriversManager driversManager = new DriversManager();
+    Counter counter = new Counter();
+    private final int MINUTES_PER_DAY = 30;
+    private final DriversBuilder driversBuilder = new DriversBuilder();
+    private final GossipShareManger manger = new GossipShareManger();
 
     @ParameterizedTest
     @MethodSource("parameters")
     void countStops(String expected, String inputFileName) {
-        List<BusDriver> drivers = driversManager.getDrivers(inputFileName);
-        String result = gossipingDrivers.countStops(drivers);
+        List<BusDriver> drivers = driversBuilder.getDrivers(inputFileName);
+        String result = counter.count(drivers, MINUTES_PER_DAY, manger);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 

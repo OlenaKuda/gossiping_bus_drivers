@@ -1,25 +1,39 @@
 package katas.gossiping_drivers;
 
 import katas.data.BusDriver;
+import katas.data.Gossip;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class GossipsSharer {
-    private final DriversManager driversManager = new DriversManager();
+public class GossipShareManger implements AbstractCommand {
+    private final int MINUTES_PER_DAY;
 
-    public boolean areAllGossipsShared(Integer minute, List<BusDriver> drivers) {
-        shareGossipsAt(minute, drivers);
+    public GossipShareManger(int minutesPerDay) {
+        MINUTES_PER_DAY = minutesPerDay;
+    }
+
+    @Override
+    public String execute(List<BusDriver> drivers) {
+        return IntStream.range(1, MINUTES_PER_DAY)
+                .filter(currentMinute -> areAllGossipsSharedAt(drivers))
+                .mapToObj(String::valueOf)
+                .findFirst()
+                .orElse("none");
+    }
+
+    private boolean areAllGossipsSharedAt(List<BusDriver> drivers) {
+        shareGossipsAt(drivers);
         return isAllGossipsShared(drivers);
     }
 
-    private Set<Gossip> shareGossipsAt(Integer minute, List<BusDriver> drivers) {
+    private void shareGossipsAt(List<BusDriver> drivers) {
         drivers.stream()
-                .collect(Collectors.groupingBy(driver -> driversManager.getStopAt(driver, minute)))
+                .collect(Collectors.groupingBy(BusDriver::getStop))
                 .values()
                 .forEach(this::shareGossips);
-        return drivers.stream().flatMap(busDriver -> busDriver.getGossips().stream()).collect(Collectors.toSet());
     }
 
     private boolean isAllGossipsShared(List<BusDriver> drivers) {
