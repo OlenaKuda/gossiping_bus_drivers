@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Playground.iml" filepath="$PROJECT_DIR$/Playground.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gossiping_bus_drivers.iml" filepath="$PROJECT_DIR$/gossiping_bus_drivers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/katas.iml" filepath="$PROJECT_DIR$/katas.iml" />
     </modules>
   </component>
 </project>

@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gossiping_bus_drivers" />
+        <module name="katas" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="gossiping_bus_drivers" target="8" />
+      <module name="katas" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

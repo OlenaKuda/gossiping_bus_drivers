@@ -1,17 +1,20 @@
-package katas.gossiping_drivers;
+package katas.gossiping_busdrivers.logic;
 
-import katas.data.BusDriver;
-import katas.data.Gossip;
+import katas.gossiping_busdrivers.data.BusDriver;
+import katas.gossiping_busdrivers.data.Gossip;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class SharedGossipsCalculatorCommand implements AbstractCommand<List<BusDriver>, String> {
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
+
+public class SharedGossipsExecutor implements AbstractExecutor<List<BusDriver>, String> {
+
     private final int MINUTES_PER_DAY;
 
-    public SharedGossipsCalculatorCommand(int minutesPerDay) {
+    public SharedGossipsExecutor(int minutesPerDay) {
         MINUTES_PER_DAY = minutesPerDay;
     }
 
@@ -28,26 +31,22 @@ public class SharedGossipsCalculatorCommand implements AbstractCommand<List<BusD
     }
 
     private boolean areAllGossipsSharedAt(List<BusDriver> drivers) {
-        shareGossipsAt(drivers);
-        return isAllGossipsShared(drivers);
-    }
-
-    private void shareGossipsAt(List<BusDriver> drivers) {
-        drivers.stream()
-                .collect(Collectors.groupingBy(BusDriver::getStop))
-                .values()
-                .forEach(this::shareGossips);
-    }
-
-    private boolean isAllGossipsShared(List<BusDriver> drivers) {
+        shareGossips(drivers);
         return drivers.stream()
                 .allMatch(driver -> driver.getGossips().size() == drivers.size());
     }
 
     private void shareGossips(List<BusDriver> drivers) {
+        drivers.stream()
+                .collect(groupingBy(BusDriver::getStop))
+                .values()
+                .forEach(this::setGossips);
+    }
+
+    private void setGossips(List<BusDriver> drivers) {
         Set<Gossip> sharedGossips = drivers.stream()
                 .flatMap(driver -> driver.getGossips().stream())
-                .collect(Collectors.toSet());
+                .collect(toSet());
         drivers.forEach(busDriver -> busDriver.setGossips(sharedGossips));
     }
 }

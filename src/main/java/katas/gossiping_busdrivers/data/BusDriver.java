@@ -1,4 +1,4 @@
-package katas.data;
+package katas.gossiping_busdrivers.data;
 
 import java.util.HashSet;
 import java.util.Queue;
