@@ -24,13 +24,13 @@ public class SharedGossipsExecutor implements AbstractExecutor<List<BusDriver>, 
             return "none";
         }
         return IntStream.range(1, MINUTES_PER_DAY)
-                .filter(currentMinute -> areAllGossipsSharedAt(drivers))
+                .filter(currentMinute -> areAllGossipsShared(drivers))
                 .mapToObj(String::valueOf)
                 .findFirst()
                 .orElse("none");
     }
 
-    private boolean areAllGossipsSharedAt(List<BusDriver> drivers) {
+    private boolean areAllGossipsShared(List<BusDriver> drivers) {
         shareGossips(drivers);
         return drivers.stream()
                 .allMatch(driver -> driver.getGossips().size() == drivers.size());
