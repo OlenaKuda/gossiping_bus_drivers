@@ -65,7 +65,7 @@ gen
 # CMake
 cmake-build-*/
 
-# Mongo Explorer plugin
+# Mongo CoordinateService plugin
 .idea/**/mongoSettings.xml
 
 # File-based project format

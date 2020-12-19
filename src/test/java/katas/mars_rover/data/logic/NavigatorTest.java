@@ -1,6 +1,7 @@
-package katas.mars_rover.data.Direction;
+package katas.mars_rover.data.logic;
 
 import katas.mars_rover.data.Coordinate;
+import katas.mars_rover.data.Direction.West;
 import katas.mars_rover.data.Obstacle;
 import katas.mars_rover.data.planet.PlanetMars;
 import katas.mars_rover.data.planet.PlanetSurface;
@@ -21,23 +22,24 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
-class CoordinateServiceTest {
+class NavigatorTest {
 
     @ParameterizedTest
     @MethodSource("parameters")
-    void ExplorerTest(Coordinate expected, List<String> inputCommands, Rover inputRover) throws Exception {
+    void navigatorTest(Coordinate expected, List<String> inputCommands, Rover inputRover) throws Exception {
         Set<Obstacle> obstacles = new HashSet<>();
         obstacles.add(new Obstacle());
         PlanetSurface marsSurface = new PlanetMars(4, 8, obstacles);
         CoordinateService coordinateService = new CoordinateService(marsSurface);
         DirectionService directionService = new DirectionService();
         Navigator navigator = new Navigator(coordinateService, directionService);
+
         Rover resultRover = navigator.navigate(inputCommands, inputRover);
         Coordinate resultCoordinate = resultRover.getCoordinate();
+
         assertThat(expected).isEqualTo(resultCoordinate);
         assertThat(expected.getX()).isEqualTo(resultCoordinate.getX());
         assertThat(expected.getY()).isEqualTo(resultCoordinate.getY());
-
     }
 
     private static Stream<Arguments> parameters(){

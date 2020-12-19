@@ -3,10 +3,10 @@ package katas.mars_rover.logic;
 import katas.mars_rover.data.Coordinate;
 import katas.mars_rover.data.planet.PlanetSurface;
 
-public class Explorer {
+public class CoordinateService {
     private final PlanetSurface planet;
 
-    public Explorer(PlanetSurface planet) {
+    public CoordinateService(PlanetSurface planet) {
         this.planet = planet;
     }
 

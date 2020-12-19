@@ -1,8 +1,10 @@
-package katas.mars_rover.data;
+package katas.mars_rover.data.planet;
+
+import katas.mars_rover.data.Obstacle;
 
 import java.util.Set;
 
-public class PlanetSurface {
+public abstract class PlanetSurface {
 
     private final int dimensionX;
     private final int dimensionY;
