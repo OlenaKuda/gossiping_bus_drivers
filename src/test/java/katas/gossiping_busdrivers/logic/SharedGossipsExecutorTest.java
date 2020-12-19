@@ -1,8 +1,6 @@
-package katas.gossiping_busdrivers.gossiping_drivers;
+package katas.gossiping_busdrivers.logic;
 
 import katas.gossiping_busdrivers.data.BusDriver;
-import katas.gossiping_busdrivers.logic.DriversBuilder;
-import katas.gossiping_busdrivers.logic.SharedGossipsExecutor;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,7 +19,6 @@ class SharedGossipsExecutorTest {
     @ParameterizedTest
     @MethodSource("parameters")
     void execute(String expected, String inputFile) {
-
         final DriversBuilder driversBuilder = new DriversBuilder(inputFile);
         List<BusDriver> drivers = driversBuilder.build();
         String result = gossipsExecutor.execute(drivers);

@@ -1,11 +1,16 @@
 package katas.mars_rover.logic;
 
 import katas.mars_rover.data.Coordinate;
-import katas.mars_rover.data.PlanetSurface;
+import katas.mars_rover.data.planet.PlanetSurface;
 
 public class Explorer {
+    private final PlanetSurface planet;
 
-    public Coordinate getCoordinateEB(Coordinate coordinate, PlanetSurface planet) {
+    public Explorer(PlanetSurface planet) {
+        this.planet = planet;
+    }
+
+    public Coordinate getCoordinateEB(Coordinate coordinate) {
         int x = coordinate.getX();
         int nextPositionY = coordinate.getY();
         int maxX = planet.getDimensionX();
@@ -17,7 +22,7 @@ public class Explorer {
         return new Coordinate(nextPositionX, nextPositionY);
     }
 
-    public Coordinate getCoordinateEF(Coordinate coordinate, PlanetSurface planet) {
+    public Coordinate getCoordinateEF(Coordinate coordinate) {
         int x = coordinate.getX();
         int y = coordinate.getY();
         int maxX = planet.getDimensionX();
@@ -31,7 +36,7 @@ public class Explorer {
         return new Coordinate(nextPositionX, nextPositionY);
     }
 
-    public Coordinate getCoordinatesWF(Coordinate coordinate, PlanetSurface planet) {
+    public Coordinate getCoordinatesWF(Coordinate coordinate) {
         int x = coordinate.getX();
         int y = coordinate.getY();
         int maxX = planet.getDimensionX();
@@ -45,7 +50,7 @@ public class Explorer {
         return new Coordinate(nextPositionX, nextPositionY);
     }
 
-    public Coordinate getCoordinatesWB(Coordinate coordinate, PlanetSurface planet) {
+    public Coordinate getCoordinatesWB(Coordinate coordinate) {
         int x = coordinate.getX();
         int y = coordinate.getY();
         int maxX = planet.getDimensionX();
