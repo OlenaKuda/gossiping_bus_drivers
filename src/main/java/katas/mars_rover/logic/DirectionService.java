@@ -8,20 +8,24 @@ import java.util.Optional;
 
 public class DirectionService {
 
-    public String getDirectionByCommand(String command, Rover rover) throws Exception {
+    public Direction getDirectionLeft(Rover rover) {
         Direction direction = rover.getDirection();
-        if (command.equalsIgnoreCase("L")) {
-            return direction.getLeftNeighbor();
-        }
-        if (command.equalsIgnoreCase("R")) {
-            return direction.getRightNeighbor();
-        }
-        throw new Exception("Wrong command! ");
+        Direction newDirectionForRover;
+        newDirectionForRover = direction.getLeft();
+        return getDirection(newDirectionForRover).orElse(rover.getDirection());
     }
 
-    public Optional<Direction> getDirectionByName(String name) {
+    public Direction getDirectionRight(Rover rover){
+        Direction direction = rover.getDirection();
+        Direction newDirectionForRover;
+        newDirectionForRover = direction.getRight();
+        return getDirection(newDirectionForRover).orElse(rover.getDirection());
+
+    }
+
+    public Optional<Direction> getDirection(Direction direction) {
         return Directions.getDirections().stream()
-                .filter(direction -> direction.getName().equalsIgnoreCase(name))
+                .filter(newDirection -> newDirection.equals(direction))
                 .findFirst();
     }
 }

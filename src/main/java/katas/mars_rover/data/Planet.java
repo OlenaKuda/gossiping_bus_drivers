@@ -1,16 +1,14 @@
-package katas.mars_rover.data.planet;
-
-import katas.mars_rover.data.Obstacle;
+package katas.mars_rover.data;
 
 import java.util.Set;
 
-public abstract class PlanetSurface {
+public class Planet {
 
     private final int dimensionX;
     private final int dimensionY;
-    private final Set<Obstacle> obstacles;
+    private final Set<Coordinate> obstacles;
 
-    public PlanetSurface(int dimensionX, int dimensionY, Set<Obstacle> obstacles) {
+    public Planet(int dimensionX, int dimensionY, Set<Coordinate> obstacles) {
         this.dimensionX = dimensionX;
         this.dimensionY = dimensionY;
         this.obstacles = obstacles;
@@ -24,7 +22,7 @@ public abstract class PlanetSurface {
         return dimensionY;
     }
 
-    public Set<Obstacle> getObstacles() {
+    public Set<Coordinate> getObstacles() {
         return obstacles;
     }
 }

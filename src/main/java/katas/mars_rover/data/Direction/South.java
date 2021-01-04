@@ -1,7 +1,28 @@
 package katas.mars_rover.data.Direction;
 
-public class South extends Direction {
-    public South() {
-        super(South.class.getSimpleName(), East.class.getSimpleName(), West.class.getSimpleName());
+import katas.mars_rover.data.Coordinate;
+import katas.mars_rover.data.Rover;
+import katas.mars_rover.logic.CoordinateService;
+
+public final class South extends Direction {
+
+
+    @Override
+    public Direction getLeft() {
+        return new East();
+    }
+
+    @Override
+    public Direction getRight() {
+        return new West();
+    }
+
+
+    public Coordinate getForwardCoordinate(CoordinateService coordinateService, Rover rover) {
+        return coordinateService.decreaseY(rover.getCoordinate());
+    }
+
+    public Coordinate getBackwardCoordinate(CoordinateService coordinateService, Rover rover) {
+        return coordinateService.increaseY(rover.getCoordinate());
     }
 }
